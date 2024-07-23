@@ -767,6 +767,7 @@ connectIris <- function(connectionDetails) {
   } else {
     connectionString <- connectionDetails$connectionString()
   }
+  message("Connection String: ", connectionString)
   if (is.null(connectionDetails$user())) {
     connection <- connectUsingJdbcDriver(driver, connectionString, dbms = connectionDetails$dbms)
   } else {
