@@ -751,8 +751,10 @@ connectSqlite <- function(connectionDetails) {
 }
 
 connectIris <- function(connectionDetails) {
+  inform("1")
   inform("Connecting using InterSystems IRIS driver")
   jarPath <- findPathToJar("^intersystems-jdbc-.*\\.jar$", connectionDetails$pathToDriver)
+  inform("2")
   driver <- getJbcDriverSingleton("com.intersystems.jdbc.IRISDriver", jarPath)
   if (is.null(connectionDetails$connectionString()) || connectionDetails$connectionString() == "") {
     if (is.null(connectionDetails$port())) {
@@ -767,7 +769,7 @@ connectIris <- function(connectionDetails) {
   } else {
     connectionString <- connectionDetails$connectionString()
   }
-  message("Connection String: ", connectionString)
+  inform(paste("Connection string: ", connectionString))
   if (is.null(connectionDetails$user())) {
     connection <- connectUsingJdbcDriver(driver, connectionString, dbms = connectionDetails$dbms)
   } else {
